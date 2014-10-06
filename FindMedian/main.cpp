@@ -16,16 +16,29 @@ using namespace std;
 int max(int a, int b) { return (a > b) ? a : b; }
 int min(int a, int b) { return (a < b) ? a : b; }
 
+/*
+ * (double) FindMedian
+ *
+ * Recursive method to find the median of two sorted
+ * arrays of the same size. Returns the average median
+ * since 2n is always an even number of elements.
+ *
+ */
 double FindMedian(int *a1, int s1, int e1, int *a2, int s2, int e2){
+    
+    // calculate median of the two subarrays
     int mid1 = (s1 + e1) / 2;
     int mid2 = (s2 + e2) / 2;
     
+    // base case two arrays of size 2
     if ((e1 - s1 == 1) && (e2 - s2 == 1)){
         double num1 = max(a1[s1], a2[s2]);
         double num2 = min(a1[e1], a2[e2]);
         return (num1 + num2) / 2;
     }
     
+    // divides in subarrays comparing the madians
+    // of both arrays...
     if (a1[mid1] < a2[mid2]) {
         return FindMedian(a1, mid1, e1, a2, s2, mid2);
     }
@@ -37,6 +50,7 @@ double FindMedian(int *a1, int s1, int e1, int *a2, int s2, int e2){
     return -1;
 }
 
+/* -----------------------------  MAIN FUNCTION ----------------------------- */
 int main()
 {
     // variable declaration
@@ -61,6 +75,7 @@ int main()
             cin >> num; arr2[i] = num; }
         /* --- USER ARRAY DATA INPUT END ----- */
         
+        // recursive method call and answer print
         cout << "Median case " << count << ": ";
         cout << FindMedian(arr1, 0, array_size, arr2, 0, array_size) << endl;
         count++;
