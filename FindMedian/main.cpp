@@ -10,6 +10,7 @@
 //
 
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 // Minimum and maximum helper functions
@@ -75,9 +76,12 @@ int main()
             cin >> num; arr2[i] = num; }
         /* --- USER ARRAY DATA INPUT END ----- */
         
-        // recursive method call and answer print
+        // recursive method call and answer output print with format
         cout << "Median case " << count << ": ";
-        cout << FindMedian(arr1, 0, array_size, arr2, 0, array_size) << endl;
+        cout << fixed << setprecision(2) << FindMedian(arr1, 0, array_size,
+                                                       arr2, 0, array_size);
+        cout << endl;
+
         count++;
     }
     
